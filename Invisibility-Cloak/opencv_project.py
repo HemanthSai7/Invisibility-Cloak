@@ -44,10 +44,12 @@ while (source.isOpened()):
     # upper_red = np.array([180, 255, 255])
     # mask2 = cv2.inRange(hsv, lower_red, upper_red)
 
+    #Generate masks to detect Blue color
     low_blue = np.array([94, 80, 2])
     high_blue = np.array([126, 255, 255])
     mask3 = cv2.inRange(hsv, low_blue, high_blue)
-
+    
+    #Generate masks to detect Green color
     # low_green = np.array([25, 52, 72])
     # high_green = np.array([102, 255, 255])
     # mask = cv2.inRange(hsv, low_green, high_green)
@@ -57,8 +59,11 @@ while (source.isOpened()):
     # high = np.array([179, 255, 255])
     # mask5 = cv2.inRange(hsv, low, high)
 
-    # Adding two masks to generate the final mask
+    # Adding masks to generate the final mask
     mask = mask3
+    
+    #To detect more than one color
+    #mask=mask1+mask2+...
 
     #Dilate the mask image
     mask = cv2.morphologyEx(mask, cv2.MORPH_DILATE, np.ones((3, 3), np.uint8))
